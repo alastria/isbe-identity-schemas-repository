@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ISBE Verifiable Authorization Record",
+  "description": "Schema of an ISBE Verifiable Authorization",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/refs/heads/main/commons/isbe-attestation-schema.json"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "description": "Defines additional information about the subject that is described by the Verifiable Authorization",
+          "type": "object",
+          "properties": {
+            "type": {
+              "description": "Full type chain, used to identify the credential base types",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 4,
+              "allOf": [
+                {
+                  "contains": { "const": "VerifiableCredential" },
+                  "minContains": 1,
+                  "maxContains": 1
+                },
+                {
+                  "contains": { "const": "IsbeAttestation" },
+                  "minContains": 1,
+                  "maxContains": 1
+                },
+                {
+                  "contains": { "const": "IsbeAccreditation" },
+                  "minContains": 1,
+                  "maxContains": 1
+                }
+              ]
+            },
+            "id": {
+              "description": "Defines a unique identifier of the Verifiable Authorization",
+              "type": "string",
+              "format": "uri"
+            },
+            "domain": {
+              "description": "Domain in which the authorization is valid",
+              "type": "string"
+            }
+          },
+          "required": ["id", "domain"]
+        }
+      },
+      "required": ["validUntil", "credentialSubject"]
+    }
+  ]
+}

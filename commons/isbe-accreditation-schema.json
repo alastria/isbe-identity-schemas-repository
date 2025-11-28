@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ISBE Verifiable Accreditation Record",
+  "description": "Schema of an ISBE Verifiable Accreditation",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/refs/heads/main/commons/isbe-authorization-schema.json"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "description": "Defines additional information about the subject that is described by the Verifiable Accreditation",
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Defines a unique identifier of the Verifiable Attestation",
+              "type": "string",
+              "format": "uri"
+            },
+            "domain": {
+              "description": "Domain in which the accreditation is valid",
+              "type": "string"
+            },
+            "accreditedFor": {
+              "description": "Defines a list of claims that define/determine the authorization of an Issuer to issue certain types of VCs",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "schemaId": {
+                    "description": "Schema which the accredited organization is allowed to issue, as per their accreditation",
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "schemaId",
+                  "types"
+                ]
+              }
+            },
+            "reservedAttributeId": {
+              "description": "Attribute identifier",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "domain",
+            "accreditedFor",
+            "reservedAttributeId"
+          ]
+        }
+      },
+      "required": [
+        "validUntil",
+        "credentialSubject",
+        "termsOfUse"
+      ]
+    }
+  ]
+}
