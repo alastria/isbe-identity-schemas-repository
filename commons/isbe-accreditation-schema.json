@@ -9,6 +9,29 @@
     },
     {
       "properties": {
+        "type": {
+          "description": "Full type chain, used to identify the credential base types",
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 4,
+          "allOf": [
+            {
+              "contains": { "const": "VerifiableCredential" },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": { "const": "IsbeAttestation" },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": { "const": "IsbeAccreditation" },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        },
         "credentialSubject": {
           "description": "Defines additional information about the subject that is described by the Verifiable Accreditation",
           "type": "object",
