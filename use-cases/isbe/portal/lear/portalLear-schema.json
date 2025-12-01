@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ISBE Portal LEAR Credential",
+  "description": "Schema for ISBE Portal LEAR credentials which allows to access and operate the LEAR portal",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/refs/heads/main/commons/isbe-domain-credential-schema.json"
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "Full type chain for Portal LEAR credential",
+          "type": "array",
+          "items":{
+            "type": "string"
+          },
+          "contains": { "const": "IsbePortalLearCredential" } 
+        },
+        "credentialSubject": {
+          "type": "object",
+          "properties": {
+            "mandate": {
+              "type": "object",
+              "properties": {
+                "mandator": {
+                  "description": "Legal representative who grants the mandate",
+                  "type": "object",
+                  "properties": {
+                    "organization": {
+                      "description": "Name of the organization",
+                      "type": "string"
+                    },
+                    "organizationIdentifier": {
+                      "description": "Organization identifier (e.g., VAT number)",
+                      "type": "string"
+                    },
+                    "country": {
+                      "description": "ISO 3166-1 alpha-2 country code",
+                      "type": "string",
+                      "pattern": "^[A-Z]{2}$"
+                    },
+                    "commonName": {
+                      "description": "Common name and identification of the legal representative",
+                      "type": "string"
+                    },
+                    "email": {
+                      "description": "Email address of the legal representative",
+                      "type": "string",
+                      "format": "email"
+                    }
+                  },
+                  "required": [
+                    "organization",
+                    "organizationIdentifier",
+                    "country",
+                    "commonName",
+                    "email"
+                  ]
+                },
+                "mandatee": {
+                  "description": "Employee who receives the mandate",
+                  "type": "object",
+                  "properties": {
+                    "employeId": {
+                      "description": "Employee identifier",
+                      "type": "string"
+                    },
+                    "email": {
+                      "description": "Email address of the employee",
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "firstName": {
+                      "description": "First name of the employee",
+                      "type": "string"
+                    },
+                    "lastName": {
+                      "description": "Last name of the employee",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "employeId",
+                    "email",
+                    "firstName",
+                    "lastName"
+                  ]
+                },
+                "power": {
+                  "description": "Array of powers granted in the mandate",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "description": "Type of power (e.g., domain)",
+                        "type": "string"
+                      },
+                      "domain": {
+                        "description": "Domain to which the power applies",
+                        "type": "string"
+                      },
+                      "function": {
+                        "description": "Function within the domain",
+                        "type": "string"
+                      },
+                      "action": {
+                        "description": "Actions that can be performed",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 1
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "domain",
+                      "function",
+                      "action"
+                    ]
+                  },
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "mandator",
+                "mandatee",
+                "power"
+              ]
+            }
+          },
+          "required": [
+            "mandate"
+          ]
+        }
+      }
+    }
+  ]
+}

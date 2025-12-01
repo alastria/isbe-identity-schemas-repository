@@ -1,0 +1,71 @@
+{
+  "@context": ["https://www.w3.org/ns/credentials/v2"],
+  "id": "urn:uuid:f81d4fae-7dec-11d0-a765-00a0c91e6bf6",
+  "type": [
+    "VerifiableCredential",
+    "IsbeAttestation",
+    "IsbeDomainCredential",
+    "IsbeDevDomain",
+    "IsbePortalLearCredential"
+  ],
+  "issuer": "did:isbe:uc:0x234234234...",
+  "validFrom": "2025-11-20T10:30:00Z",
+  "credentialSubject": {
+    "id": "did:isbe:uc:0xB87654321...",
+    "mandate": {
+      "id": "urn:uuid:987e6543-b21c-34d6-a789-543210fedcba",
+      "mandator": {
+        "organization": "GOOD AIR, S.L.",
+        "organizationIdentifier": "VATFR-B12345678",
+        "country": "FR",
+        "commonName": "JEAN MARTIN - CNI 880692310285",
+        "email": "jean.martin@goodair.fr"
+      },
+      "mandatee": {
+        "employeId": "A-12345678",
+        "email": "jane.smith@goodair.com",
+        "firstName": "Jane",
+        "lastName": "Smith"
+      },
+      "power": [
+        {
+          "type": "domain",
+          "domain": "DOME",
+          "function": "Onboarding",
+          "action": ["execute"]
+        },
+        {
+          "type": "domain",
+          "domain": "DOME",
+          "function": "Onboarding",
+          "action": ["execute"]
+        }
+      ]
+    }
+  },
+  "credentialStatus": {
+    "id": "https://status.isbe.com/credentials/status/8#492847",
+    "type": "BitstringStatusListEntry",
+    "statusPurpose": "message",
+    "statusListIndex": "492847",
+    "statusSize": 2,
+    "statusListCredential": "https://status.isbe.com/credentials/status/8",
+    "statusMessage": [
+      { "status": "0x0", "message": "accepted" },
+      { "status": "0x1", "message": "revoked" },
+      { "status": "0x2", "message": "suspended" },
+      { "status": "0x3", "message": "reserved" }
+    ],
+    "statusReference": "https://status.isbe.com/credentials/status/dictionary"
+  },
+  "credentialSchema": {
+    "id": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/refs/heads/main/use-cases/isbe/portal/lear/portalLear-schema.json",
+    "type": "FullJsonSchemaValidator2021"
+  },
+  "termsOfUse": [
+    {
+      "type": "IsbeIssuanceCertificate",
+      "id": "https://acreditationregistry.isbe.com/attributes/2F9A7C1B8E3D65042B1C8E3D65042F9A7C1B8E3D65042F9A7C1B8E3D6504"
+    }
+  ]
+}
