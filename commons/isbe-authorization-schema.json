@@ -24,11 +24,6 @@
               "contains": { "const": "IsbeAttestation" },
               "minContains": 1,
               "maxContains": 1
-            },
-            {
-              "contains": { "const": "IsbeAuthorization" },
-              "minContains": 1,
-              "maxContains": 1
             }
           ]
         },
