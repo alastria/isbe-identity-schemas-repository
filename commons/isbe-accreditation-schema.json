@@ -63,30 +63,14 @@
                     }
                   }
                 },
-                "required": [
-                  "schemaId",
-                  "types"
-                ]
+                "required": ["schemaId", "types"]
               }
-            },
-            "reservedAttributeId": {
-              "description": "Attribute identifier",
-              "type": "string"
             }
           },
-          "required": [
-            "id",
-            "domain",
-            "accreditedFor",
-            "reservedAttributeId"
-          ]
+          "required": ["id", "domain", "accreditedFor"]
         }
       },
-      "required": [
-        "validUntil",
-        "credentialSubject",
-        "termsOfUse"
-      ]
+      "required": ["validUntil", "credentialSubject", "termsOfUse"]
     }
   ]
 }

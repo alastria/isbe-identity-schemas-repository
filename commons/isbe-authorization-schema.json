@@ -39,9 +39,13 @@
             "domain": {
               "description": "Domain in which the authorization is valid",
               "type": "string"
+            },
+            "reservedAttributeId": {
+              "description": "Attribute identifier",
+              "type": "string"
             }
           },
-          "required": ["id", "domain"]
+          "required": ["id", "domain", "reservedAttributeId"]
         }
       },
       "required": ["validUntil", "credentialSubject"]
