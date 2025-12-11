@@ -52,10 +52,7 @@
                   },
                   "required": [
                     "organization",
-                    "organizationIdentifier",
-                    "country",
-                    "commonName",
-                    "email"
+                    "organizationIdentifier"
                   ]
                 },
                 "mandatee": {
