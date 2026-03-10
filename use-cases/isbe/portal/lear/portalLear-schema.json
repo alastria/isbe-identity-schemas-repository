@@ -78,7 +78,7 @@
                     }
                   },
                   "required": [
-                    "employeId",
+                    "employeeId",
                     "email",
                     "firstName",
                     "lastName"
