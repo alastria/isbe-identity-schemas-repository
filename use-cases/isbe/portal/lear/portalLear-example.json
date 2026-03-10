@@ -22,7 +22,7 @@
         "email": "jean.martin@goodair.fr"
       },
       "mandatee": {
-        "employeId": "A-12345678",
+        "employeeId": "A-12345678",
         "email": "jane.smith@goodair.com",
         "firstName": "Jane",
         "lastName": "Smith"

@@ -59,7 +59,7 @@
                   "description": "Employee who receives the mandate",
                   "type": "object",
                   "properties": {
-                    "employeId": {
+                    "employeeId": {
                       "description": "Employee identifier",
                       "type": "string"
                     },
