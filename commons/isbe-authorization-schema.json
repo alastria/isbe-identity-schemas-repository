@@ -5,7 +5,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/refs/heads/main/commons/isbe-attestation-schema.json"
+      "$ref": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/main/commons/isbe-attestation-schema.json"
     },
     {
       "properties": {
