@@ -1,0 +1,213 @@
+{
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://raw.githubusercontent.com/alastria/isbe-identity-schemas-repository/main/commons/isbe-domain-credential-schema.json"
+    },
+    {
+      "properties": {
+        "credentialSubject": {
+          "type": "object",
+          "required": [
+            "id",
+            "mandate",
+            "iban_attestation"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Defines a unique identifier of the natural person"
+            },
+            "mandate": {
+              "type": "object",
+              "required": [
+                "mandator",
+                "mandatee"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "mandatee": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "employeId",
+                    "email",
+                    "firstName",
+                    "lastName"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "lastName": {
+                      "type": "string"
+                    },
+                    "employeId": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "mandator": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "organization",
+                    "organizationIdentifier",
+                    "country",
+                    "commonName",
+                    "serialNumber",
+                    "email"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email"
+                    },
+                    "country": {
+                      "type": "string",
+                      "maxLength": 2,
+                      "minLength": 2,
+                      "description": "Country code as per ISO 3166-1 alpha-2"
+                    },
+                    "commonName": {
+                      "type": "string"
+                    },
+                    "organization": {
+                      "type": "string"
+                    },
+                    "serialNumber": {
+                      "type": "string"
+                    },
+                    "organizationIdentifier": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "description": "Mandate information linking mandator and mandatee"
+            },
+            "iban_attestation": {
+              "type": "object",
+              "required": [
+                "bank_account",
+                "account_ownership",
+                "account_provider"
+              ],
+              "properties": {
+                "bank_account": {
+                  "type": "object",
+                  "required": [
+                    "account_name",
+                    "IBAN",
+                    "account_type",
+                    "account_currency"
+                  ],
+                  "properties": {
+                    "IBAN": {
+                      "type": "string",
+                      "pattern": "^[A-Z]{2}[0-9A-Z]{13,30}$"
+                    },
+                    "account_name": {
+                      "type": "string"
+                    },
+                    "account_type": {
+                      "type": "string"
+                    },
+                    "account_usage": {
+                      "enum": [
+                        "PRIV",
+                        "PRO"
+                      ],
+                      "type": "string"
+                    },
+                    "account_currency": {
+                      "type": "string",
+                      "maxLength": 3,
+                      "minLength": 3
+                    }
+                  },
+                  "description": "Attributes representing the bank account"
+                },
+                "account_provider": {
+                  "type": "object",
+                  "required": [
+                    "provider_name",
+                    "bank_identifier",
+                    "provider_country"
+                  ],
+                  "properties": {
+                    "BIC": {
+                      "type": "string",
+                      "pattern": "^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$"
+                    },
+                    "provider_name": {
+                      "type": "string"
+                    },
+                    "bank_identifier": {
+                      "type": "string"
+                    },
+                    "clearing_number": {
+                      "type": "string"
+                    },
+                    "provider_country": {
+                      "type": "string",
+                      "maxLength": 2,
+                      "minLength": 2
+                    }
+                  },
+                  "description": "Attributes representing the account provider"
+                },
+                "account_ownership": {
+                  "type": "object",
+                  "required": [
+                    "owner_name"
+                  ],
+                  "properties": {
+                    "parties": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": [
+                          "full_name",
+                          "role"
+                        ],
+                        "properties": {
+                          "role": {
+                            "type": "string"
+                          },
+                          "full_name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "owner_name": {
+                      "type": "string"
+                    }
+                  },
+                  "description": "Attributes representing the account ownership"
+                }
+              },
+              "description": "Attributes representing an IBAN attestation"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "title": "ISBE Mandate and IBAN Attestation Credential",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Schema defining a credential containing a mandate and an IBAN attestation according to ISBE Verifiable Credential structure."
+}
